@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>System Maintenance | VibrocomX</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #000;
+            color: #ff003c;
+            font-family: monospace;
+        }
+
+        .blink {
+            animation: blinker 1s linear infinite;
+        }
+
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body class="h-screen flex flex-col items-center justify-center text-center p-4">
+    <h1 class="text-6xl font-black mb-4">SYSTEM LOCKDOWN</h1>
+    <p class="text-xl text-gray-400 mb-8">VibrocomX is currently under maintenance or secure protocol updates.</p>
+    <div class="text-4xl blink">ACCESS DENIED</div>
+    <div class="mt-12 text-gray-600 text-sm">Administrator access is still available via secure channels.</div>
+    <a href="{{ url_for('admin.login') }}" class="mt-4 text-gray-800 hover:text-gray-600">Admin Login</a>
+</body>
+
+</html>

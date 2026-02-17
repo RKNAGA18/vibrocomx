@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}VibrocomX{% endblock %} | Alternative Media</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body
+    class="bg-[#050505] text-gray-100 flex flex-col min-h-screen relative font-inter selection:bg-[#ff003c] selection:text-white">
+
+    <!-- God Mode: Breaking Banner -->
+    {% if show_banner %}
+    <div class="bg-red-900/20 border-y border-red-900/50 py-2 overflow-hidden fixed top-0 w-full z-50 backdrop-blur-md">
+        <div class="whitespace-nowrap animate-marquee">
+            <span class="mx-4 text-red-200 font-mono text-sm uppercase tracking-wide flex items-center">
+                <i class="fas fa-circle text-[8px] mr-4 animate-pulse"></i> {{ breaking_text }}
+            </span>
+        </div>
+    </div>
+    <div class="h-10"></div>
+    {% endif %}
+
+    <!-- Navbar -->
+    <nav
+        class="bg-[#0b0c10]/80 backdrop-blur-lg border-b border-[#333] p-4 sticky top-10 z-40 transition-all duration-300 hover:bg-[#0b0c10]/95">
+        <div class="container mx-auto flex justify-between items-center">
+            <!-- Logo -->
+            <a href="{{ url_for('index') }}" class="flex items-center group">
+                <i
+                    class="fas fa-broadcast-tower text-[#ff003c] text-2xl mr-3 group-hover:rotate-12 transition-transform"></i>
+                <span class="text-2xl font-black text-white uppercase tracking-widest glitch-text"
+                    data-text="VibrocomX">
+                    VibrocomX
+                </span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="space-x-8 hidden md:flex items-center">
+                <a href="{{ url_for('index') }}"
+                    class="nav-link relative text-gray-400 hover:text-white uppercase text-xs font-bold tracking-widest transition-colors py-2">
+                    <span class="z-10 relative">Home</span>
+                </a>
+                <a href="{{ url_for('analysis') }}"
+                    class="nav-link relative text-gray-400 hover:text-white uppercase text-xs font-bold tracking-widest transition-colors py-2">
+                    <span class="z-10 relative">Analysis</span>
+                </a>
+                <a href="{{ url_for('mission') }}"
+                    class="nav-link relative text-gray-400 hover:text-white uppercase text-xs font-bold tracking-widest transition-colors py-2">
+                    <span class="z-10 relative">Mission</span>
+                </a>
+
+                <!-- Admin / System Access Button -->
+                {% if current_user.is_authenticated %}
+                <a href="{{ url_for('admin.dashboard') }}"
+                    class="flex items-center bg-yellow-600/20 border border-yellow-500 text-yellow-500 px-4 py-1.5 rounded-sm uppercase text-xs font-bold tracking-widest hover:bg-yellow-500 hover:text-black transition-all">
+                    <i class="fas fa-terminal mr-2"></i> Console
+                </a>
+                {% else %}
+                <a href="{{ url_for('admin.login') }}"
+                    class="group flex items-center text-[#ff003c] border border-[#ff003c]/30 hover:border-[#ff003c] px-4 py-1.5 rounded-sm uppercase text-xs font-bold tracking-widest transition-all hover:bg-[#ff003c] hover:text-white hover:shadow-[0_0_15px_rgba(255,0,60,0.5)]">
+                    <i class="fas fa-lock mr-2 text-[10px] group-hover:unlock"></i> System
+                </a>
+                {% endif %}
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-white text-xl"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="container mx-auto mt-6 px-4 absolute z-50 w-full left-0 right-0 pointer-events-none">
+        {% for category, message in messages %}
+        <div class="pointer-events-auto max-w-lg mx-auto p-4 mb-4 text-sm text-white border-l-4 shadow-lg {% if category == 'success' %}bg-green-900/90 border-green-500{% else %}bg-red-900/90 border-red-500{% endif %} flex items-center justify-between"
+            role="alert" data-aos="fade-down">
+            <span class="font-mono">{{ message }}</span>
+            <button onclick="this.parentElement.remove()" class="text-white hover:text-gray-300"><i
+                    class="fas fa-times"></i></button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8 relative z-10">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#08090c] p-12 mt-20 border-t border-[#222] relative overflow-hidden">
+        <!-- Footer Background Decals -->
+        <div
+            class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#ff003c] to-transparent opacity-50">
+        </div>
+
+        <div class="container mx-auto text-center relative z-10">
+            <h4 class="text-white font-black uppercase tracking-widest mb-6 text-2xl">Connect Signal</h4>
+            <div class="mb-8 flex justify-center gap-6">
+                <!-- Dynamic Social Links -->
+                {% for link in social_links %}
+                <a href="{{ link.url }}" target="_blank"
+                    class="w-12 h-12 flex items-center justify-center rounded-full bg-[#15161a] border border-[#333] text-gray-400 hover:text-white hover:border-[#ff003c] hover:bg-[#ff003c] transition-all duration-300 transform hover:scale-110 hover:rotate-6 shadow-lg">
+                    <i class="{{ link.icon_class }} text-lg"></i>
+                </a>
+                {% endfor %}
+            </div>
+            <p class="text-gray-600 text-xs font-mono uppercase tracking-widest">
+                &copy; {{ current_year }} VibrocomX. <span class="text-[#ff003c]">Do not obey.</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        AOS.init({ offset: 100, duration: 800, easing: 'ease-out-quad', once: true });
+    </script>
+    {% block scripts %}{% endblock %}
+</body>
+
+</html>

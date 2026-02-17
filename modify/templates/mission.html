@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Our Mission{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto py-12">
+    <h1
+        class="text-4xl md:text-6xl font-black text-white mb-8 border-l-8 border-[#ff003c] pl-6 uppercase tracking-tighter">
+        Mission Statement
+    </h1>
+
+    <div class="prose prose-invert prose-lg max-w-none text-gray-300 font-light leading-relaxed">
+        <!-- Render HTML content securely (assuming admin is trusted) -->
+        {{ mission_text | safe }}
+    </div>
+
+    <!-- Founders Section -->
+    <div class="mt-20">
+        <h2 class="text-3xl font-bold text-white mb-8 uppercase tracking-widest border-b border-[#333] pb-2">The
+            Founders</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {% for founder in founders %}
+            <div class="bg-[#0b0c10] p-6 rounded border border-[#333] flex items-center space-x-6">
+                <!-- If image exists -->
+                <div class="w-24 h-24 bg-gray-800 rounded-full flex-shrink-0 overflow-hidden border-2 border-[#ff003c]">
+                    {% if founder.image_url %}
+                    <img src="{{ founder.image_url }}" class="w-full h-full object-cover">
+                    {% else %}
+                    <div class="w-full h-full flex items-center justify-center text-gray-600"><i
+                            class="fas fa-user"></i></div>
+                    {% endif %}
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-white">{{ founder.name }}</h3>
+                    <p class="text-[#ff003c] text-sm uppercase font-bold tracking-wide">{{ founder.role }}</p>
+                    <p class="text-gray-500 text-sm mt-2">{{ founder.bio }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

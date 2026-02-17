@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="text-center py-20 bg-gradient-to-b from-[#050505] to-[#0b0c10] border-b border-[#222]">
+    <h1 class="text-5xl md:text-7xl font-black text-white mb-6 uppercase tracking-tighter" data-aos="fade-down">
+        Give Voice to the <span class="text-[#ff003c] glitch-text" data-text="Unheard">Unheard</span>
+    </h1>
+    <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed font-light" data-aos="fade-up"
+        data-aos-delay="200">
+        Challenging the mainstream narrative. Exposing the injustices ignored by western media.
+        <strong class="text-white block mt-2 font-mono">Truth is our only agenda.</strong>
+    </p>
+    <div class="mt-8" data-aos="zoom-in" data-aos-delay="400">
+        <a href="{{ url_for('mission') }}"
+            class="inline-block bg-[#ff003c] text-white font-bold py-3 px-8 rounded hover:bg-[#c4002e] transition-all transform hover:scale-105 uppercase tracking-widest text-sm shadow-[0_0_15px_rgba(255,0,60,0.5)]">
+            Our Mission
+        </a>
+    </div>
+</section>
+
+<!-- Next Broadcast (Countdown) -->
+<div class="border border-[#ff003c] p-6 my-12 bg-black/50 rounded-lg shadow-[0_0_20px_rgba(255,0,60,0.15)] relative overflow-hidden group max-w-4xl mx-auto"
+    data-aos="flip-up">
+    <div class="absolute top-0 right-0 bg-[#ff003c] text-white text-xs font-bold px-3 py-1 uppercase tracking-widest">
+        Upcoming Live
+    </div>
+    <div
+        class="absolute -inset-1 bg-gradient-to-r from-red-600 to-purple-600 opacity-20 blur transition duration-1000 group-hover:opacity-40">
+    </div>
+
+    <div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center">
+        <div>
+            <h3 class="text-gray-400 text-xs uppercase tracking-widest mb-2"><i
+                    class="fas fa-satellite-dish mr-2 text-red-500 animate-pulse"></i>Next Broadcast</h3>
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-1">Neo-Colonialism in the Digital Age</h2>
+            <p class="text-[#ff003c] font-semibold text-lg">with Dr. Ayesha Khan</p>
+        </div>
+        <div class="mt-4 md:mt-0 text-right">
+            <span id="countdown"
+                class="block text-4xl font-black font-mono text-white tracking-widest text-shadow-glow">00:00:00</span>
+            <span class="text-xs text-gray-400 uppercase tracking-wide">Time Remaining</span>
+        </div>
+    </div>
+</div>
+
+<!-- Latest Analysis Grid -->
+<section class="my-16">
+    <div class="flex justify-between items-end mb-8 border-l-4 border-[#ff003c] pl-4">
+        <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Latest Analysis</h2>
+        <a href="{{ url_for('analysis') }}"
+            class="text-[#ff003c] hover:text-white transition-colors text-sm uppercase font-bold tracking-widest">View
+            All &rarr;</a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for post in posts %}
+        <div class="bg-[#0b0c10] rounded-lg overflow-hidden hover:-translate-y-2 transition-all duration-300 border border-[#222] hover:border-[#ff003c] group"
+            data-aos="fade-up" data-aos-delay="{{ loop.index * 100 }}">
+            <div class="h-48 bg-[#15161a] relative overflow-hidden">
+                {% if post.image_url %}
+                <img src="{{ post.image_url }}" alt="{{ post.title }}"
+                    class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity">
+                {% else %}
+                <div class="absolute inset-0 flex items-center justify-center text-gray-700 bg-[#0e0f12]">
+                    <i class="fas fa-file-alt text-4xl"></i>
+                </div>
+                {% endif %}
+                <span
+                    class="absolute top-2 left-2 bg-[#ff003c] text-white text-[10px] font-bold px-2 py-1 uppercase tracking-wider rounded-sm">
+                    {{ post.category }}
+                </span>
+            </div>
+            <div class="p-5">
+                <h3
+                    class="text-xl font-bold mb-2 text-white leading-tight font-mono group-hover:text-[#ff003c] transition-colors">
+                    <a href="{{ url_for('article', slug=post.slug) }}">{{ post.title }}</a>
+                </h3>
+                <p class="text-gray-400 text-sm mb-4 line-clamp-3 font-light">
+                    {{ post.summary }}
+                </p>
+                <div class="flex justify-between items-center mt-4 border-t border-[#222] pt-4">
+                    <span class="text-xs text-gray-500 uppercase">{{ post.date_posted.strftime('%b %d, %Y') }}</span>
+                    <a href="{{ url_for('article', slug=post.slug) }}"
+                        class="text-[#ff003c] font-bold text-xs hover:underline uppercase tracking-wide">
+                        Read Analysis &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Countdown Timer logic injected here or loaded from script.js
+    // Re-using the logic we wrote earlier but adapting for Jinja if needed.
+    // Ideally, keep it in static/script.js, but ensures it runs.
+    document.addEventListener('DOMContentLoaded', () => {
+        const countdownElement = document.getElementById('countdown');
+        if (countdownElement) {
+            const targetDate = new Date();
+            targetDate.setDate(targetDate.getDate() + 2); // Mock date
+
+            function update() {
+                const now = new Date();
+                const diff = targetDate - now;
+                if (diff <= 0) return;
+
+                const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+                countdownElement.innerText =
+                    `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+            }
+            setInterval(update, 1000);
+            update();
+        }
+    });
+</script>
+{% endblock %}

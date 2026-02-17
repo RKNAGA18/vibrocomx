@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | VibrocomX</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+    </style>
+</head>
+
+<body class="bg-slate-900 text-gray-100 flex flex-col min-h-screen">
+
+    <nav class="bg-slate-800 border-b border-red-600 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-black text-red-500 uppercase tracking-widest glitch-text"
+                data-text="VibrocomX">
+                VibrocomX
+            </a>
+            <div class="space-x-4">
+                <a href="index.html"
+                    class="text-gray-300 hover:text-red-500 transition-colors uppercase text-sm tracking-widest">Home</a>
+                <a href="blog.html"
+                    class="text-gray-300 hover:text-red-500 transition-colors uppercase text-sm tracking-widest">Analysis</a>
+                <a href="about.html"
+                    class="text-gray-300 hover:text-red-500 transition-colors uppercase text-sm tracking-widest">Mission</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow container mx-auto px-4 py-8">
+
+        <div class="bg-red-900/20 border-y border-red-900/50 py-2 overflow-hidden mb-8">
+            <div class="whitespace-nowrap animate-marquee">
+                <span class="mx-4 text-red-200 font-mono text-sm uppercase tracking-wide">
+                    BREAKING: VibrocomX Exclusive: Global South unites against sanctions &bull; Whistleblower reveals
+                    new surveillance tactics &bull; Independent media under attack in Europe &bull; Resource wars: The
+                    hidden truth &bull; Julian Assange's legacy continues
+                </span>
+            </div>
+        </div>
+        <style>
+            .animate-marquee {
+                animation: marquee 20s linear infinite;
+            }
+
+            @keyframes marquee {
+                0% {
+                    transform: translateX(100%);
+                }
+
+                100% {
+                    transform: translateX(-100%);
+                }
+            }
+        </style>
+
+        <section class="mb-12 text-center py-20 bg-gradient-to-b from-gray-900 to-slate-900 border-b border-gray-800">
+            <h1 class="text-5xl md:text-7xl font-black text-white mb-6 uppercase tracking-tighter">
+                Give Voice to the <span class="text-red-600">Unheard</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                Challenging the mainstream narrative. Exposing the injustices ignored by western media.
+                <strong class="text-white block mt-2">Truth is our only agenda.</strong>
+            </p>
+            <div class="mt-8">
+                <a href="about.html"
+                    class="bg-red-600 text-white font-bold py-3 px-8 rounded hover:bg-red-700 transition-colors uppercase tracking-widest text-sm relative overflow-hidden group">
+                    <span class="relative z-10">Our Mission</span>
+                    <div
+                        class="absolute inset-0 h-full w-full bg-red-800 scale-0 group-hover:scale-100 transition-transform origin-bottom duration-300">
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <div class="border-2 border-red-600 p-6 my-6 bg-black/50 rounded-lg shadow-lg relative overflow-hidden group">
+            <div
+                class="absolute top-0 right-0 bg-red-600 text-white text-xs font-bold px-3 py-1 uppercase tracking-widest">
+                Upcoming Live
+            </div>
+            <h3 class="text-gray-400 text-sm uppercase tracking-widest mb-2">Next Broadcast</h3>
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mb-1">Neo-Colonialism in the Digital Age</h2>
+                    <p class="text-red-500 font-semibold text-lg">with Dr. Ayesha Khan</p>
+                </div>
+                <div class="mt-4 md:mt-0 text-right">
+                    <span id="countdown"
+                        class="block text-4xl font-black font-mono text-white tracking-widest text-shadow-glow">00:00:00</span>
+                    <span class="text-xs text-gray-400">Time Remaining</span>
+                </div>
+            </div>
+        </div>
+
+        <section class="my-12">
+            <h2 class="text-3xl font-black text-white mb-8 border-l-4 border-red-600 pl-4">Latest Analysis</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <div
+                    class="bg-slate-800 rounded-lg overflow-hidden hover:transform hover:-translate-y-1 transition-all duration-300 border border-slate-700">
+                    <div class="h-48 bg-slate-700 relative">
+                        <!-- Placeholder for image if not provided, or img tag -->
+                        <div class="absolute inset-0 flex items-center justify-center text-slate-500 bg-slate-900">
+                            <span class="text-xs uppercase">Thumbnail: Field Report</span>
+                        </div>
+                        <span class="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">
+                            Field Report
+                        </span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2 text-white leading-tight">
+                            <a href="/article/congo-silent-war" class="hover:text-red-500 transition-colors">The Silent
+                                war in the Congo</a>
+                        </h3>
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-3">
+                            While the world watches elsewhere, corporations are fueling a conflict that has claimed
+                            millions of lives. We expose the supply chain.
+                        </p>
+                        <a href="/article/congo-silent-war"
+                            class="inline-block text-red-500 font-bold text-sm hover:underline uppercase tracking-wide">
+                            Read Analysis &rarr;
+                        </a>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-slate-800 rounded-lg overflow-hidden hover:transform hover:-translate-y-1 transition-all duration-300 border border-slate-700">
+                    <div class="h-48 bg-slate-700 relative">
+                        <!-- Placeholder for image if not provided, or img tag -->
+                        <div class="absolute inset-0 flex items-center justify-center text-slate-500 bg-slate-900">
+                            <span class="text-xs uppercase">Thumbnail: Analysis</span>
+                        </div>
+                        <span class="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">
+                            Analysis
+                        </span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2 text-white leading-tight">
+                            <a href="/article/dedollarization"
+                                class="hover:text-red-500 transition-colors">De-dollarization: A new era?</a>
+                        </h3>
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-3">
+                            Analysis of the BRICS summit and what it means for the future of western economic hegemony.
+                        </p>
+                        <a href="/article/dedollarization"
+                            class="inline-block text-red-500 font-bold text-sm hover:underline uppercase tracking-wide">
+                            Read Analysis &rarr;
+                        </a>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-slate-800 rounded-lg overflow-hidden hover:transform hover:-translate-y-1 transition-all duration-300 border border-slate-700">
+                    <div class="h-48 bg-slate-700 relative">
+                        <!-- Placeholder for image if not provided, or img tag -->
+                        <div class="absolute inset-0 flex items-center justify-center text-slate-500 bg-slate-900">
+                            <span class="text-xs uppercase">Thumbnail: censorship</span>
+                        </div>
+                        <span class="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">
+                            censorship
+                        </span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2 text-white leading-tight">
+                            <a href="/article/protests-blackout" class="hover:text-red-500 transition-colors">Media
+                                Blackout on Protests</a>
+                        </h3>
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-3">
+                            Thousands march in the capital, but you won't see it on the evening news. Our on-the-ground
+                            report.
+                        </p>
+                        <a href="/article/protests-blackout"
+                            class="inline-block text-red-500 font-bold text-sm hover:underline uppercase tracking-wide">
+                            Read Analysis &rarr;
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-800 p-8 mt-12 border-t border-gray-800">
+        <div class="container mx-auto text-center">
+            <p class="text-gray-500 text-sm mt-2 font-mono">
+                &copy; 2026 VibrocomX. Truth acts as a vibration through the noise.
+            </p>
+            <div class="mt-4 space-x-4">
+                <!-- Social Media Hub Placeholder -->
+                <a href="#" class="text-gray-100">Twitter/X</a>
+                <a href="#" class="text-gray-100">Telegram</a>
+                <a href="#" class="text-gray-100">Substack</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
